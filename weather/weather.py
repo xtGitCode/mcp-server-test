@@ -2,13 +2,16 @@ from typing import Any
 import httpx
 import datetime
 from mcp.server.fastmcp import FastMCP
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
 # Initialize FastMCP server
 mcp = FastMCP("weather")
 
 # Constants
 OPENWEATHER_API_BASE = "https://api.openweathermap.org/data/2.5"
-API_KEY = "d0716f49e52c54dcebeafde7ccf9b9cd"
+API_KEY = os.getenv("OPENWEATHER_API_KEY") 
 
 # Helper functions
 async def make_weather_request(endpoint: str, params: dict) -> dict[str, Any] | None:
